@@ -84,8 +84,8 @@ var appClient = new Client.IotfApplication(appClientConfig);
 appClient.connect();
 
 appClient.on("connect", function () {
-
-    appClient.subscribeToDeviceEvents("Kev","device01","+","json");
+  console.log("HAAAAAAAAALLOOOO");
+    appClient.subscribeToDeviceEvents("iot-phone","Kev","+","json");
 
 });
 appClient.on("deviceEvent", function (deviceType, deviceId, eventType, format, payload) {
