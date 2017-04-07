@@ -79,6 +79,20 @@ app.get('/iotServiceLink', function(req, res) {
 	}).on('error', function(e) { console.log("ERROR", e); });
 	org_req.end();
 });
+var appClient = new Client.IotfApplication(appClientConfig);
+
+appClient.connect();
+
+appClient.on("connect", function () {
+
+    appClient.subscribeToDeviceEvents("Kev","device01","+","json");
+
+});
+appClient.on("deviceEvent", function (deviceType, deviceId, eventType, format, payload) {
+
+    console.log("Device Event from :: "+deviceType+" : "+deviceId+" of event "+eventType+" with payload : "+payload);
+
+})
 
 app.post('/registerDevice', function(req, res) {
 	console.log(req.body);
