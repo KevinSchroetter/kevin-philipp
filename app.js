@@ -5,12 +5,19 @@ var bodyParser = require('body-parser');
 var https = require('https');
 var cfenv = require('cfenv');
 var app = express();
+var Client = require("ibmiotf");
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json()); // for parsing application/json
 var appEnv = cfenv.getAppEnv();
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-
+var appClientConfig = {
+  org: 'pk7v95',
+  id: 'kevin-philipp',
+  "auth-key": 'a-pk7v95-cc5yeaimns',
+  "auth-token": '9rRHkwP8t?*CJ!VCmm',
+  "type" : "shared" // make this connection as shared subscription
+};
 var config = null;
 var credentials = null;
 if (process.env.VCAP_SERVICES) {
