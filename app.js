@@ -84,15 +84,22 @@ var appClient = new Client.IotfApplication(appClientConfig);
 appClient.connect();
 
 appClient.on("connect", function () {
-  console.log("HAAAAAAAAALLOOOO");
    // appClient.subscribeToDeviceEvents("iot-phone","Kev","+","json");
-   appClient.subscribeToDeviceEvents();
+   appClient.subscribeToDeviceEvents("+","+","sensorData", "json");
 
 });
 appClient.on("deviceEvent", function (deviceType, deviceId, eventType, format, payload) {
-
-    console.log("Device Event from :: "+deviceType+" : "+deviceId+" of event "+eventType+" with payload : "+payload);
-
+	var load = JSON.parse(payload);
+	var xAxis = load.d.ax;
+	var yAxis = load.d.ay;
+	var zAxis = load.d.az;
+	
+	if ((xAxis > -1.5 && xAxis < 1.5)&&(yAxis >-1.5 && yAxis < 1.5)){
+		console.log("Device "+load.d.id+" is lying");
+	}   
+	else{
+		console.log("Device "+load.d.id+" is moving");
+	}
 })
 
 app.post('/registerDevice', function(req, res) {
