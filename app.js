@@ -1,5 +1,9 @@
 'use strict';
 
+/*
+ * @author Philipp Bahnmüller (742233), Kevin Schrötter (742082)
+ */
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var https = require('https');
