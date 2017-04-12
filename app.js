@@ -85,7 +85,8 @@ appClient.connect();
 
 appClient.on("connect", function () {
   console.log("HAAAAAAAAALLOOOO");
-    appClient.subscribeToDeviceEvents("iot-phone","Kev","+","json");
+   // appClient.subscribeToDeviceEvents("iot-phone","Kev","+","json");
+   aooClient.subscribeToDeviceEvents();
 
 });
 appClient.on("deviceEvent", function (deviceType, deviceId, eventType, format, payload) {
